@@ -12,6 +12,26 @@
 // composizioni/cover/01-cover.typ
 // =================================================================================================
 
+/// **Description:**
+///
+/// Generates a standalone cover page for a musical work.
+///
+/// Places the opus designation, work number and title, instrument
+/// designation, author, and date inside a block occupying 90%
+/// of the page width. Vertically centers the block and aligns it to the left.
+///
+/// Displays the opus designation first, followed by the work number
+/// and title in a large, bold font. The instrument designation is displayed
+/// in an italic font, followed by the author's name and the formatted date,
+/// with vertical spacing between each element.
+///
+/// **Parameters:**
+/// - `collection`: `content` or `none` (the opus designation to which the work belongs).
+/// - `number`: `content` or `none` (the number of the musical work within the collection).
+/// - `title`: `content` or `none` (the title of the musical work).
+/// - `instruments`: `content` or `none` (the instrument or instruments for which the work is written).
+/// - `author`: `content` or `none` (the name of the author or composer).
+/// - `date`: `datetime` or `none` (the date displayed on the cover page).
 #let cover-page(
     collection: none,
     number: none,

@@ -14,6 +14,15 @@
 
 #import "../cover/lib.typ": cover
 
+/// **Description:**
+///
+/// Defines the entry point for generating the paratext of a musical work.
+///
+/// Calls `paratext` with the work's number, title, and instrument designation
+/// to generate the title page and copyright page in a single invocation.
+///
+/// Allows the document to be compiled directly from the terminal using
+/// the `typst compile` command.
 #cover(
     number: 3,
     title: "Abyss",
