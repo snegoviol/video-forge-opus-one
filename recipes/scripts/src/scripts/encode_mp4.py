@@ -1,29 +1,31 @@
+# ==================================================================================================
+# 
 # Copyright (c) 2026 Ilya Snegov (aka Sierra Arn)
-#
+# 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
+# 
+# http://www.apache.org/licenses/LICENSE-2.0
+# 
+# ==================================================================================================
 # recipes/scripts/src/scripts/encode_mp4.py
+# ==================================================================================================
+
 import argparse
 import subprocess
 import sys
 from pathlib import Path
 from scripts.paths import find_project_root, resolve_piece_path
 
+# ==================================================================================================
+
 _COVER_NAME = "cover.png"
 _SOURCE_NAME = "source.flac"
 _OUTPUT_NAME = "video.mp4"
 _FRAME_RATE = 1
 
+# ==================================================================================================
 
 def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     """
@@ -55,6 +57,7 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     )
     return parser.parse_args(argv)
 
+# ==================================================================================================
 
 def _audio_duration_seconds(audio_path: Path) -> float:
     """
@@ -110,6 +113,7 @@ def _audio_duration_seconds(audio_path: Path) -> float:
         )
     return duration
 
+# ==================================================================================================
 
 def _run_ffmpeg(
     cover_path: Path,
@@ -180,6 +184,7 @@ def _run_ffmpeg(
             f"ffmpeg encode failed for {audio_path}{suffix}"
         )
 
+# ==================================================================================================
 
 def encode_mp4(piece_dir: str) -> Path:
     """
@@ -219,6 +224,7 @@ def encode_mp4(piece_dir: str) -> Path:
     _run_ffmpeg(cover_path, source_path, output_path)
     return output_path
 
+# ==================================================================================================
 
 def main(argv: list[str] | None = None) -> int:
     """
@@ -249,6 +255,9 @@ def main(argv: list[str] | None = None) -> int:
         return 1
     return 0
 
+# ==================================================================================================
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
+# ==================================================================================================

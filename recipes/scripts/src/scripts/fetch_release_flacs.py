@@ -1,18 +1,17 @@
+# ==================================================================================================
+# 
 # Copyright (c) 2026 Ilya Snegov (aka Sierra Arn)
-#
+# 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+# 
+# http://www.apache.org/licenses/LICENSE-2.0
+# 
+# ==================================================================================================
+# recipes/scripts/src/scripts/write_flac_metadata.py
+# ==================================================================================================
 
-# recipes/scripts/src/scripts/fetch_release_flacs.py
 import argparse
 import sys
 import urllib.error
@@ -20,12 +19,15 @@ import urllib.request
 from pathlib import Path
 from scripts.paths import find_project_root
 
-_REPO = "Sierra-Arn/audio-forge-opus-one"
+# ==================================================================================================
+
+_REPO = "snegoviol/audio-forge-opus-one"
 _TAG = "v2026.09.15"
 _ASSET_SUFFIX = ".flac"
 _DEST_NAME = "source.flac"
 _DOWNLOAD_HOST = "https://github.com"
 
+# ==================================================================================================
 
 def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     """
@@ -50,6 +52,7 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     )
     return parser.parse_args(argv)
 
+# ==================================================================================================
 
 def _asset_url(piece_dir: str) -> str:
     """
@@ -70,6 +73,7 @@ def _asset_url(piece_dir: str) -> str:
         f"{_DOWNLOAD_HOST}/{_REPO}/releases/download/{_TAG}/{asset_name}"
     )
 
+# ==================================================================================================
 
 def _download_flac(url: str, dest: Path) -> None:
     """
@@ -110,6 +114,7 @@ def _download_flac(url: str, dest: Path) -> None:
 
     dest.write_bytes(data)
 
+# ==================================================================================================
 
 def fetch_release_flacs(project_root: Path | None = None) -> int:
     """
@@ -155,6 +160,7 @@ def fetch_release_flacs(project_root: Path | None = None) -> int:
 
     return downloaded
 
+# ==================================================================================================
 
 def main(argv: list[str] | None = None) -> int:
     """
@@ -183,6 +189,9 @@ def main(argv: list[str] | None = None) -> int:
     print(f"done: {count} file(s)")
     return 0
 
+# ==================================================================================================
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
+# ==================================================================================================

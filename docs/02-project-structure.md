@@ -1,6 +1,26 @@
+<!--    
+    ================================================================================================
+    
+    Copyright (c) 2026 Ilya Snegov (aka Sierra Arn)
+    
+    Dedicated to the public domain under the Creative Commons
+    CC0 1.0 Universal Public Domain Dedication (the "Dedication").
+    You may obtain a copy of the Dedication at
+    
+    https://creativecommons.org/publicdomain/zero/1.0/legalcode.en
+
+    ================================================================================================
+    docs/02-project-structure.md
+    ================================================================================================
+-->
+
 # II. Detailed Project Structure
 
 > *This document describes the logical organization of the project codebase as a Pixi workspace for the video release pipeline.*
+
+<!--    
+    ================================================================================================
+-->
 
 ## Repository Layout
 
@@ -23,23 +43,29 @@ video-forge-opus-one/
 │   │
 │   └── scripts/        # Video pipeline CLIs (pixi-build-python recipe).
 │
+├── LICENSES/           # Full texts of all licenses used in the project.
+│   │
+│   ├── Apache-2.0.txt  # Apache License, Version 2.0.
+│   ├── CC-BY-4.0.txt   # Creative Commons Attribution 4.0 International
+│   │                   # Public License.
+│   └── CC0-1.0.txt     # Creative Commons CC0 1.0 Universal Public Domain
+│                       # Dedication.
+│
+├── LICENSE.txt         # Licensing overview: states which license applies
+│                       # to which files; refers to `LICENSES/`.
+│
 ├── metadata.toml       # Shared release metadata (used by workspace CLIs).
 │
 ├── pixi.toml           # Workspace manifest: channels, dependencies, and tasks.
 │
-├── pixi.lock           # Fully resolved and reproducible dependency lockfile.
-│
-├── LICENSE-CC-BY-4.0   # Full text of the Creative Commons Attribution 4.0
-│                       # International License.
-│
-├── LICENSE-APACHE-2.0  # Full text of the Apache License, Version 2.0.
-│
-└── NOTICE              # Preferred attribution when reusing Apache-2.0 licensed
-                        # portions of this project, plus preserved
-                        # NOTICE text from upstream works reused here.
+└── pixi.lock           # Fully resolved and reproducible dependency lockfile.
 ```
 
 Source files are documented with detailed docstrings and/or inline comments to explain the code.
+
+<!--    
+    ================================================================================================
+-->
 
 ## Workspace Overview
 
@@ -55,6 +81,10 @@ cover/
 └── 01-cover.typ        # Cover page layout (collection, number, title, instruments,
                         # author, publication date).
 ```
+
+<!--    
+    ================================================================================================
+-->
 
 ### 2. `composizioni/Op-1_No-*/`
 
@@ -76,6 +106,10 @@ Op-1_No-1_Believe/
 
 > **Note:**  
 > `*.flac`, `*.mp4`, and `cover.png` are gitignored. After a fresh clone only `cover.typ` is present until `fetch-release-flacs` and the video pipeline are run.
+
+<!--    
+    ================================================================================================
+-->
 
 ### 3. `recipes/scripts/`
 
@@ -111,3 +145,7 @@ scripts/
 ```
 
 Piece-oriented CLIs accept a bare directory name (for example `Op-1_No-1_Believe`) and resolve paths relative to the workspace root. They expect the fixed file names from the piece layout above — `cover.typ`, `source.flac`, `cover.png`, `video.mp4`, and `release.mp4` — and will fail if those names are missing or renamed. They share `paths.py` for consistent project-root discovery and `metadata.toml` access.
+
+<!--    
+    ================================================================================================
+-->
